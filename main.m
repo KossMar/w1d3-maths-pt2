@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
+#import "Question.h"
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
+#import "QuestionManager.h"
+#import "QuestionFactory.h"
 
 
 int main(int argc, const char * argv[]) {
@@ -18,10 +20,12 @@ int main(int argc, const char * argv[]) {
         BOOL gameOn = true;
         
         ScoreKeeper *score = [[ScoreKeeper alloc] init];
-
+        QuestionManager *questMan = [[QuestionManager alloc] init];
+        QuestionFactory *questFac = [[QuestionFactory alloc] init];
+        
         while(gameOn){
             
-            AdditionQuestion *question = [[AdditionQuestion alloc] init];
+            Question *question = [[Question alloc] init];
             
             InputHandler *handler = [[InputHandler alloc] init];
             NSString * returnStringAnswer = [handler handleInput];
@@ -36,6 +40,7 @@ int main(int argc, const char * argv[]) {
             
             if ([returnStringAnswer isEqual: @"quit"]){
                 [score showScore:[score right] wrong:[score wrong]];
+
                 break;
             }
             
@@ -43,16 +48,19 @@ int main(int argc, const char * argv[]) {
              
                 NSInteger inputAnswer = [question answerFunc: tempAnswer];
                 
+                
                 if(tempAnswer == [question answer]){
                     NSLog(@"Correct!");
                     NSLog(@"Correct Answer: %ld", (long)inputAnswer);
+                    NSLog(@"%@", questMan.timeOutput);
                     score.right++;
+                    
                     
                 }
                 else {
-                    NSLog(@"%ld", (long)inputAnswer);
                     NSLog(@"Wrong");
                     NSLog(@"Correct Answer: %ld", (long)inputAnswer);
+                    NSLog(@"%@", questMan.timeOutput);
                     score.wrong++;
                 }
             }
