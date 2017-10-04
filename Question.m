@@ -9,14 +9,7 @@
       
         _leftValue = arc4random_uniform(10);
         _rightValue = arc4random_uniform(10);
-        
-//        NSString * question  = [NSString stringWithFormat:@"%ld + %ld", _leftValue, _rightValue];
-//        
-//        NSLog(@"%@", question);
-//        
-//        _startTime = [NSDate date];
-//        
-//        _answer = x + y;
+        _startTime = [NSDate date];
         
     }
     return self;
@@ -29,12 +22,14 @@
 
 - (NSInteger)answerFunc:(NSInteger)userAnswer {
     _endTime = [NSDate date];
-    
-    NSTimeInterval timeTaken = [_endTime timeIntervalSinceDate:_startTime];
-    NSLog(@"You took %f seconds. Try harder!", timeTaken);
+
     return _answer;
 }
 
+- (NSTimeInterval) answerTime {
+    NSTimeInterval timeTaken = [_endTime timeIntervalSinceDate:_startTime];
+    return timeTaken;
+}
 
 
 

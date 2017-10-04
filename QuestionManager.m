@@ -1,12 +1,7 @@
-//
-//  QuestionManager.m
-//  Maths
-//
-//  Created by Mar Koss on 2017-10-04.
-//  Copyright © 2017 Sanjay Shah. All rights reserved.
-//
+
 
 #import "QuestionManager.h"
+#import "Question.h"
 
 @implementation QuestionManager
 
@@ -19,11 +14,26 @@
     return self;
 }
 
-- (NSString*) timeOutput {
+- (void) addToArray:(Question*) currentQuestion {
     
-    NSString *timeMessage = @"total time: 60s, average time: 10s";
+    [self.questionArr addObject:currentQuestion];
+}
+
+- (void) timeOutput {
     
-    return timeMessage;
+    int totalTime = 0;
+    int averageTime = 0;
+    
+    for (Question *question in self.questionArr){
+        totalTime = totalTime + [question answerTime];
+    }
+    
+    averageTime = totalTime / self.questionArr.count;
+    
+    NSString *timeMessage = [NSString stringWithFormat:@"total time: %i , average time: %i ", totalTime, averageTime];
+    
+    NSLog(@"%@", timeMessage);
+
 }
 
 @end

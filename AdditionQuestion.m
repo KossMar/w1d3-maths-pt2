@@ -21,8 +21,10 @@
 
 - (void) generateQuestion {
     super.answer = (super.leftValue + super.rightValue);
-    super.question = [NSString stringWithFormat:@"%ul + %ul", super.leftValue, super.rightValue];
-    NSLog(@"%@", super.question);
+    super.question = [NSString stringWithFormat:@"%ld + %ld", (long)super.leftValue, (long)super.rightValue];
+    
+    
+//    NSLog(@"%@", super.question);
 }
 
 @end

@@ -23,6 +23,9 @@
 }
 
 -(Question*)generateRandomQuestion {
+ int r = arc4random_uniform(4);
+    
+    return [[NSClassFromString(self.questionSubclassArr[r]) alloc]init];
     
 }
 

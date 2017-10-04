@@ -25,7 +25,9 @@ int main(int argc, const char * argv[]) {
         
         while(gameOn){
             
-            Question *question = [[Question alloc] init];
+            Question *questionMath = [questFac generateRandomQuestion];
+            [questMan addToArray: questionMath];
+//            [questMan.questionArr addObject:questionMath.question];
             
             InputHandler *handler = [[InputHandler alloc] init];
             NSString * returnStringAnswer = [handler handleInput];
@@ -39,30 +41,32 @@ int main(int argc, const char * argv[]) {
 
             
             if ([returnStringAnswer isEqual: @"quit"]){
-                [score showScore:[score right] wrong:[score wrong]];
-
                 break;
             }
             
             else {
              
-                NSInteger inputAnswer = [question answerFunc: tempAnswer];
+                NSInteger inputAnswer = [questionMath answerFunc: tempAnswer];
                 
                 
-                if(tempAnswer == [question answer]){
+                if(tempAnswer == [questionMath answer]){
                     NSLog(@"Correct!");
                     NSLog(@"Correct Answer: %ld", (long)inputAnswer);
-                    NSLog(@"%@", questMan.timeOutput);
                     score.right++;
-                    
+                
                     
                 }
                 else {
                     NSLog(@"Wrong");
                     NSLog(@"Correct Answer: %ld", (long)inputAnswer);
-                    NSLog(@"%@", questMan.timeOutput);
                     score.wrong++;
+                    
                 }
+                
+                NSLog(@"You took %f seconds. Try harder!", [questionMath answerTime]);
+                [score showScore:[score right] wrong:[score wrong]];
+                [questMan timeOutput];
+
             }
 
             gameOn = true;

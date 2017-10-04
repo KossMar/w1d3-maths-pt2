@@ -11,8 +11,9 @@
 @property (nonatomic) NSInteger leftValue;
 @property (nonatomic) NSInteger rightValue;
 
-- (NSInteger)answerFunc:(NSInteger)userAnswer;
-
 - (void) generateQuestion;
+- (NSInteger)answerFunc:(NSInteger)userAnswer;
+- (NSTimeInterval) answerTime;
+
 
 @end

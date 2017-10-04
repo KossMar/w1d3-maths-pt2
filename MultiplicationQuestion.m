@@ -21,7 +21,7 @@
 
 - (void) generateQuestion {
     super.answer = (super.leftValue * super.rightValue);
-    super.question = [NSString stringWithFormat:@"%ldl * %ldl", (long)super.leftValue, (long)super.rightValue];
+    super.question = [NSString stringWithFormat:@"%ld * %ld", (long)super.leftValue, (long)super.rightValue];
     NSLog(@"%@", super.question);
 }
 
